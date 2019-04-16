@@ -5,23 +5,26 @@ class Solution:
         :type t: str
         :rtype: bool
         """
-        lookup = []
-        for i in range(len(s)):
-            if s[i] not in lookup:
-                lookup.append(s[i])
-        print(lookup)
+        lookup = {}
 
-        for j in range(len(t)):
-            if s[j] not in lookup:
+        for i in s:
+            if i not in lookup:
+                lookup[i] = 1
+            else:
+                lookup[i]+=1
+
+        for j in t:
+            if j not in lookup:
                 return False
+            else:
+                lookup[j]-=1
 
+        for k in lookup:
+            if lookup[k]>0:return False
         return True
 
 if __name__ == '__main__':
     print(Solution().isAnagram('anagram','nagaram'))
-
-
-
 
 
 

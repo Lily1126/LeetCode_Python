@@ -17,11 +17,11 @@ class Solution:
         :type q: TreeNode
         :rtype: TreeNode
         """
-        pointer = root
+        ointer = root
         while pointer:
-            if p > pointer.val and q > pointer.val:
+            if p.val > pointer.val and q.val > pointer.val:
                 pointer = pointer.right
-            elif p < pointer.val and q < pointer.val:
+            elif p.val < pointer.val and q.val < pointer.val:
                 pointer = pointer.left
             else:
                 return pointer

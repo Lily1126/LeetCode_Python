@@ -10,17 +10,59 @@ class Solution:
         :type head: ListNode
         :rtype: bool
         """
-        rev = None
-        slow = fast = head
+        #判断回文主要是前半部分和后半部分的比较，若能将前半部分压栈，再依次出栈与后半部分比较，则可判断是否回文。
+        fast = slow = ListNode(0)
+        fast = slow = head
+        stack = []
+
         while fast and fast.next:
+            stack.append(slow.val)
+            slow = slow.next
             fast = fast.next.next
-            rev, rev.next, slow = slow, rev, slow.next
+
         if fast:
             slow = slow.next
-        while rev and rev.val == slow.val:
+
+        while slow:
+            top = stack.pop()
+
+            if top != slow.val:
+                return False
             slow = slow.next
-            rev = rev.next
-        return not rev
+        return True
+
+class Solution2:
+    def isPalindrome(self, head):
+        """
+        :type head: ListNode
+        :rtype: bool
+        """
+        if not head or not head.next:
+            return True
+        slow = fast = head
+        while fast.next and fast.next.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        slow = slow.next
+        slow = self.reverseList(slow)
+
+        while slow:
+            if head.val != slow.val:
+                return False
+            slow = slow.next
+            head = head.next
+        return True
+
+    def reverseList(self, head):
+        new_head = None
+        while head:
+            p = head
+            head = head.next
+            p.next = new_head
+            new_head = p
+        return new_head
+
 
 if __name__ == '__main__':
     head = ListNode(1)
@@ -36,7 +78,7 @@ if __name__ == '__main__':
 
     """
         Time Complexity = O(N)
-        Space Complexity = O(1)
+        Space Complexity = O(n/2)
 
         Given a singly linked list, determine if it is a palindrome.
 
