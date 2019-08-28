@@ -15,7 +15,7 @@ class Solution:
         res = []
         for i in nums2:
             if i in lookup:
-                res += i,
+                res.append(i)
                 lookup.discard(i)
 
         return res

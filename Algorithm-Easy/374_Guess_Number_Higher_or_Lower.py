@@ -9,14 +9,19 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        left, right = 1, n
+        left = 1
+        right = n
+
         while left <= right:
-            mid = left + (right - left) / 2
-            if guess(mid) <= 0: # noqa
+            mid = (left + right) / 2
+            ret = guess(mid)
+
+            if ret == 0:
+                return mid
+            elif ret == -1:
                 right = mid - 1
             else:
                 left = mid + 1
-        return left
 
 
 

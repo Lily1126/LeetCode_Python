@@ -15,7 +15,7 @@ class Solution:
             else:
                 return False
 
-        if n != 2:
+        if n == 3:
             return True
         else:
             return False

@@ -6,7 +6,7 @@ class NumArray:
         """
         self.accu = [0]
         for num in nums:
-            self.accu.append(self.accu[-1] + num),
+            self.accu.append(self.accu[-1] + num)
 
     def sumRange(self, i, j):
         """

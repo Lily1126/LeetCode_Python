@@ -1,16 +1,10 @@
 class Solution:
-    def reverseString(self, s):
+    def reverseString(self, s: List[str]) -> None:
         """
-        :type s: str
-        :rtype: str
+        Do not return anything, modify s in-place instead.
         """
-        string = list(s)
-        i, j = 0, len(string) - 1
-        while i < j:
-            string[i], string[j] = string[j], string[i]
-            i += 1
-            j -= 1
-        return "".join(string)
+        for i in range(len(s)//2):
+            s[i],s[-i-1]=s[-i-1],s[i]
 
 
 

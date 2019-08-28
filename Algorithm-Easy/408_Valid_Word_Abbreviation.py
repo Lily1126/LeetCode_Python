@@ -5,24 +5,24 @@ class Solution:
         :type abbr: str
         :rtype: bool
         """
-        i , digit = 0, 0
-        for c in abbr:
-            if c.isdigit():
-                if digit == 0 and c == '0':
-                    return False
-                digit *= 10
-                digit += int(c)
-            else:
-                if digit:
-                    i += digit
-                    digit = 0
-                if i >= len(word) or word[i] != c:
+        i, j = 0, 0
+        while i < len(abbr):
+            if j >= len(word):
+                return False
+            if not abbr[i].isdigit():
+                if abbr[i] != word[j]:
                     return False
                 i += 1
-        if digit:
-            i += digit
-
-        return i == len(word)
+                j += 1
+            else:
+                if abbr[i] == '0':
+                    return False
+                n = ''
+                while i < len(abbr) and abbr[i].isdigit():
+                    n += abbr[i]
+                    i += 1
+                j += int(n)
+        return j == len(word)
 
 
 

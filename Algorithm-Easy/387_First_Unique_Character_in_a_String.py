@@ -6,21 +6,29 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        lookup = defaultdict(int)
-        candidtates = set()
-
-        for i, c in enumerate(s):
-            if lookup[c]:
-                candidtates.discard(lookup[c])
+        lookup = dict()
+        for i in s:
+            if i in lookup:
+                lookup[i] += 1
             else:
-                lookup[c] = i+1
-                candidtates.add(i+1)
+                lookup[i] = 1
 
-        return min(candidtates)-1 if candidtates else -1
+        for i in s:
+            if lookup[i] == 1:
+                return s.index(i)
 
+        return -1
 
+class Solution2:
+    def firstUniqChar(self, s: str) -> int:
+        from collections import Counter
+        lookup=Counter(s)
 
+        for i,c in enumerate(s):
+            if lookup[c]==1:
+                return i
 
+        return -1
 
 
     """
